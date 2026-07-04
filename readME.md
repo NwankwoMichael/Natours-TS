@@ -1,5 +1,11 @@
 # Natours-TS
 
+[![Live Demo](https://img.shields.io/badge/Demo-Render-blue)](https://natours-js.onrender.com)
+[![API Docs](https://img.shields.io/badge/API-Postman-orange)](https://documenter.getpostman.com/view/54238187/2sBXqNmJEt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+![Tech Stack](https://img.shields.io/badge/Stack-Node.js%20%7C%20Express%20%7C%20TypeScript%20%7C%20MongoDB-lightgrey)
+[![Build Status](https://github.com/NwankwoMichael/Natours-TS/actions/workflows/ci.yml/badge.svg)](https://github.com/NwankwoMichael/Natours-TS/actions)
+
 Natours‑TS is a **full‑stack adventure booking application** built with Node.js, Express, MongoDB, TypeScript, Stripe and friends 🥱\*\*.  
 It provides a secure, scalable backend API for managing tours, users, reviews, and bookings, while also serving dynamic views.  
 This project is a TypeScript‑typed conversion of the original Natours app by [Jonas Schmedtmann](https://codingheroes.io), adapted to modern best practices with strict typing, improved maintainability, and production‑ready patterns.
@@ -66,17 +72,13 @@ This project is a TypeScript‑typed conversion of the original Natours app by [
 
 🌐 Live Demo
 
-```bash
-    👉 [Natours-TS on Render](https://natours-js.onrender.com)
-```
+👉 [![Live Demo](https://img.shields.io/badge/Demo-Render-blue)](https://natours-js.onrender.com)
 
 ---
 
 📖 API Documentation
 
-```bash
-    👉 [Natours-TS API DOC](API_DOC=https://documenter.getpostman.com/view/54238187/2sBXqNmJEt)
-```
+👉 [![API Docs](https://img.shields.io/badge/API-Postman-orange)](https://documenter.getpostman.com/view/54238187/2sBXqNmJEt)
 
 ---
 

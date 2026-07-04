@@ -1,0 +1,8 @@
+main.main
+  .error
+    .error__title
+      //- 1. DYNAMIC VALUE: Renders your custom title context parameter safely
+      h2.heading-secondary.heading-secondary--error= title
+      h2.error__emoji 😢 🤯
+    //- 2. DYNAMIC VALUE: Injects the specific runtime error message from your handler
+    .error__msg= msg

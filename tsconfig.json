@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+
+  "include": ["src/**/*"],
+
+  "ts-node": {
+    "files": true
+  }
+}
+
+// npx ts-node src/server.ts
+
+/*
+// 2. RECOMMENDED (Once you create your IReview interface later):
+// export interface ITour extends Document {
+//   reviews?: IReview[]; 
+// }
+*/

@@ -1,0 +1,13 @@
+# 🔒 SENSITIVE ENVIRONMENT SHEETS
+.env
+.env.production
+.env.local
+
+# 📁 BUILD & COMPILATION TARGETS
+node_modules/
+.parcel-cache/
+dist/
+
+# 🛑 SYSTEM & OS FLUFF
+.DS_Store
+npm-debug.log*

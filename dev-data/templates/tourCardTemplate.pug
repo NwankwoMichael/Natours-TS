@@ -1,0 +1,54 @@
+//- This code template wraps inside an "each tour in tours" collection block on your parent template layer
+.card
+  .card__header
+    .card__picture
+      .card__picture-overlay &nbsp;
+      //- 1. DYNAMIC ASSET: Inject absolute path with fallback title definitions
+      img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+    h3.heading-tertirary
+      //- 2. DYNAMIC TEXT: Injects live database tour title strings
+      span= tour.name
+
+  .card__details
+    //- 3. COMBINED METRICS: Combines dynamic difficulty attributes with duration tracking properties
+    h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+    //- 4. DYNAMIC TEXT: Summary content catcher
+    p.card__text= tour.summary
+    
+    .card__data
+      svg.card__icon
+        use(xlink:href='/img/icons.svg#icon-map-pin')
+      //- 5. RELATIONAL DATA: Accesses startLocation nested schema descriptors
+      span= tour.startLocation.description
+      
+    .card__data
+      svg.card__icon
+        use(xlink:href='/img/icons.svg#icon-calendar')
+      //- 6. DATE FORMATTING ENGINE: Converts raw JS dates arrays into clean localized typography paths
+      span= tour.startDates[0].toLocaleString('en-US', { month: 'long', year: 'numeric' })
+      
+    .card__data
+      svg.card__icon
+        use(xlink:href='/img/icons.svg#icon-flag')
+      //- 7. COMPUTED ARRAY CALCULATIONS: Tracks intermediate map stops counts out of locations length
+      span= `${tour.locations.length} stops`
+      
+    .card__data
+      svg.card__icon
+        use(xlink:href='/img/icons.svg#icon-user')
+      //- 8. DYNAMIC ATTRIBUTE: Maximum registration sizing values
+      span= `${tour.maxGroupSize} people`
+
+  .card__footer
+    p
+      //- 9. LIVE PRICING MATRIX: Pulls financial metrics natively
+      span.card__footer-value= `$${tour.price}`
+      | 
+      span.card__footer-text per person
+    p.card__ratings
+      //- 10. EVALUATION RATINGS: Exposes floating metrics along with quantities bounds
+      span.card__footer-value= tour.ratingsAverage
+      | 
+      span.card__footer-text= `rating (${tour.ratingsQuantity})`
+    //- 11. STRATEGIC LINK REDIRECTION: Maps detail redirection anchors cleanly onto unique system slugs
+    a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details

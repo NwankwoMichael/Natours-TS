@@ -1,0 +1,43 @@
+extends base
+include _reviewCard
+
+mixin navItem(link, text, icon, active)
+  li(class=`${active ? "side-nav--active" : ""}`)
+    a(href=`${link}`)
+      svg
+        use(xlink:href=`/img/icons.svg#icon-${icon}`) 
+      | #{text}
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          +navItem("/me", "Settings", "settings", false)
+          +navItem("/my-tours", "My bookings", "briefcase", false)
+          +navItem("/my-reviews", "My reviews", "star", true)        
+          +navItem("#", "Billing", "credit-card")
+
+        - if (user && user.role === "admin")     
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              +navItem("#", "Manage tours", "map")
+              +navItem("#", "Manage users", "users")
+              +navItem("#", "Manage reviews", "star")
+              +navItem("#", "Manage bookings", "briefcase")
+
+      .user-view__content
+        .user-view__form-container(style="max-width: 70rem;")
+          h2.heading-secondary.ma-bt-md Your Historical Reviews Matrix
+
+          if reviews && reviews.length > 0
+            .my-reviews-grid(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr)); gap: 3rem; margin-top: 3rem;")
+              each review in reviews
+                .review-card-wrapper(style="background-color: #f7f7f7; padding: 2.5rem; border-radius: 5px; border: 1px solid #eee;")
+                  h3.heading-tertirary(style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #55c57a;")= review.tour ? review.tour.name : "Tour Experience"
+                  +reviewCard(review)
+          else
+            .no-reviews(style="text-align: center; padding: 5rem 2rem;")
+              h3.heading-secondary(style="color: #777; font-style: italic; font-size: 1.8rem;") You haven't written any tour reviews yet! ✍️
+              p.card__text(style="margin-top: 1rem; font-size: 1.4rem; color: #999;") Complete an experienced tour booking to share your journey metrics with the globe.

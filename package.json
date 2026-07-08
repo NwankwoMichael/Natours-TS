@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "ts-node src/server.ts",
-    "watch:js": "parcel watch ./public/js/index.ts --target frontend",
-    "build:js": "parcel build ./public/js/index.ts --target frontend",
+    "watch:js": "parcel watch ./public/js/index.ts --target frontend --no-cache",
+    "build:js": "parcel build ./public/js/index.ts --target frontend --no-cache",
     "build:ts": "tsc",
     "build": "npm run build:js && npm run build:ts",
     "start": "cross-env NODE_ENV=production node dist/server.js",

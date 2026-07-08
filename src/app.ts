@@ -11,6 +11,7 @@ import cors from "cors";
 import path from "path";
 import { Request, Response, NextFunction } from "express";
 
+import { IUser } from "./models/userModel";
 import tourRouter from "./routes/tourRoutes";
 import userRouter from "./routes/userRoutes";
 import reviewRouter from "./routes/reviewRoutes";
@@ -25,6 +26,7 @@ declare global {
   namespace Express {
     interface Request {
       requestTime?: string;
+      user?: IUser;
     }
   }
 }

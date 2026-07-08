@@ -12,13 +12,14 @@ router.post("/logout", authController.logout);
 router.post("/forgotPassword", authController.forgotPassword);
 router.patch("/resetPassword/:token", authController.resetPassword);
 
-// PROTECT ALL ROUTES AFTER THIS MIDDLEWARE
+// PROTECT ALL ROUTES AFTER THIS MIDDLEWARE(Enforce active login session)
 router.use(authController.protect);
 
 // SPECIFIC AUTHENTICATED USER LIFECYCLE ROUTES
 router.patch("/updateMyPassword", authController.updatePassword);
 
 router.get("/me", userController.getMe, userController.getUser);
+router.delete("/deleteMe", userController.deleteMe);
 
 router.patch(
   "/updateMe",
@@ -26,8 +27,6 @@ router.patch(
   userController.resizeUserPhoto,
   userController.updateMe,
 );
-
-router.delete("/deleteMe", userController.deleteMe);
 
 // RESTRICT ALL ROUTES AFTER THIS TO ONLY ADMIN
 router.use(authController.restrictTo("admin"));
@@ -42,6 +41,6 @@ router
   .route("/:id")
   .get(userController.getUser)
   .patch(userController.updateUser)
-  .delete(authController.restrictTo("admin"), userController.deleteUser);
+  .delete(userController.deleteUser);
 
 export default router;

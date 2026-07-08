@@ -9,7 +9,9 @@ import Email from "../utils/email";
 // HELPER FUNCTION TO SIGN JWT TOKEN CLEANLY
 const signToken = (id: string): string => {
   if (!process.env.JWT_SECRET || !process.env.JWT_EXPIRES_IN) {
-    throw new Error("Missing critical JWT enviroment variables!");
+    throw new Error(
+      "Missing critical JWT environment variables during signing!",
+    );
   }
   return jwt.sign({ id }, process.env.JWT_SECRET as string, {
     expiresIn: process.env.JWT_EXPIRES_IN as jwt.SignOptions["expiresIn"],
@@ -133,7 +135,10 @@ export const protect = catchAsync(
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET as string,
-    ) as jwt.JwtPayload & { id: string; iat: number };
+    ) as jwt.JwtPayload & {
+      id: string;
+      iat: number;
+    };
 
     // C) Check if the user still exists in the database
     const currentUser = await User.findById(decoded.id);
@@ -205,13 +210,32 @@ export const restrictTo = (
   ...roles: ("user" | "guide" | "lead-guide" | "admin")[]
 ) => {
   return (req: Request, res: Response, next: NextFunction): void => {
+    // Fallback guard if request is missing
+    if (!req.user)
+      return next(
+        new AppError(
+          "You are not logged in! Please log in to get access.",
+          401,
+        ),
+      );
+
+    // Read the role whether it's a flat string, document, or nested data object
+    const userRole = req.user.role || (req.user as any)._doc?.role;
+
     // Check if the user's role is permitted in the routing matrix argument block
-    if (!req.user || !roles.includes(req.user.role)) {
+    if (!userRole || !roles.includes(userRole)) {
       return next(
         new AppError("You do not have permission to perform this action", 403),
       );
     }
     next();
+
+    // Standard structural comparison safety block
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError("You do not have permission to perform this action", 403),
+      );
+    }
   };
 };
 

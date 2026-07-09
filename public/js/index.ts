@@ -102,22 +102,23 @@ if (signupForm) {
 }
 
 // USER LOGIN FORM SUBMISSION INTERCEPTOR
-if (loginForm)
-  loginForm.addEventListener("submit", (e) => {
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const emailEl = document.getElementById("email") as HTMLInputElement | null;
     const passwordEl = document.getElementById(
       "password",
     ) as HTMLInputElement | null;
 
-    if (emailEl && passwordEl) login(emailEl.value, passwordEl.value);
+    if (emailEl && passwordEl) await login(emailEl.value, passwordEl.value);
   });
+}
 
 // USER LOGOUT ACTION TRIGGER
 if (logoutBtn)
-  logoutBtn.addEventListener("click", (e: Event) => {
+  logoutBtn.addEventListener("click", async (e: Event) => {
     e.preventDefault();
-    logout();
+    await logout();
   });
 
 // PROFILE RE-METRICS UPDATE FORM INTERCEPTOR (Multer Data Layer Processing)

@@ -5,7 +5,11 @@
   "frontend": "./public/js/bundle.js",
   "targets": {
     "main": false,
-    "frontend": {}
+    "frontend": {
+      "context": "browser",
+      "distDir": "./public/js",
+      "optimize": true
+    }
   },
   "scripts": {
     "dev": "ts-node src/server.ts",

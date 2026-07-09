@@ -72,13 +72,13 @@ This project is a TypeScript‑typed conversion of the original Natours app by [
 
 🌐 Live Demo
 
-👉 [![Live Demo](https://img.shields.io/badge/Demo-Render-blue)](https://natours-js.onrender.com)
+👉 [![Live Demo](https://img.shields.io/badge/Demo-Render-blue)](https://natours-ts.onrender.com)
 
 ---
 
 📖 API Documentation
 
-👉 [![API Docs](https://img.shields.io/badge/API-Postman-orange)](https://documenter.getpostman.com/view/54238187/2sBXqNmJEt)
+👉 [![API Docs](https://img.shields.io/badge/API-Postman-orange)](https://documenter.getpostman.com/view/54238187/2sBY4Jx3Rq)
 
 ---
 

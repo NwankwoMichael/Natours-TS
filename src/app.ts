@@ -174,6 +174,11 @@ app.get(
   },
 );
 
+// SILENCE ROOT FAVICON 404 LOG ERRORS
+app.get("/favicon.ico", (req: Request, res: Response) => {
+  res.status(204).end();
+});
+
 // Catch-All Unmatched Routes
 app.all("/*any", (req: Request, res: Response, next: NextFunction) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

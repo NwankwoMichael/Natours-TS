@@ -6842,4 +6842,4 @@ const bookTour = async (tourId, stripePublicKey)=>{
 
 },{"axios":"3Ng71","./alerts":"5QDBO","@parcel/transformer-js/src/esmodule-helpers.js":"cw28t"}]},["ddDuD","8Iuri"], "8Iuri", "parcelRequire6e83", {})
 
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=index.js.map

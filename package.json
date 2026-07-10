@@ -2,13 +2,12 @@
   "name": "natours-ts",
   "version": "1.0.0",
   "main": "dist/server.js",
+  "frontend": "./public/js/bundle.js",
   "targets": {
     "main": false,
     "frontend": {
       "context": "browser",
-      "distDir": "./public/js",
-      "distEntry": "bundle.js",
-      "optimize": false
+      "optimize": true
     }
   },
   "scripts": {

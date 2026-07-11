@@ -103,10 +103,10 @@ block content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
 
-        //- 🚀 FIXED NESTING ARCHITECTURE: Every conditional gate is aligned exactly right!
+        //- 🚀 NESTING ARCHITECTURE: Every conditional gate is aligned exactly right!
         if user
           if isBooked
-            span.btn.btn--green.span-all-rows(style="background-image: linear-gradient(to right, #7dd56f, #28b485); cursor: default; box-shadow: none;") You already booked this tour! 🎉
+            span.btn.btn--green.span-all-rows(style="background-image: linear-gradient(to right, #7dd56f, #28b485); cursor: default; box-shadow: none;")(href=`/me`) You already booked this tour! 🎉
           else
             button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}` data-stripe-public-key=`${stripePublicKey}`) Book tour now!
         else 

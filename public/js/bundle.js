@@ -754,8 +754,9 @@ if (signupForm) signupForm.addEventListener("submit", async (e)=>{
     const emailEl = document.getElementById("email");
     const passwordEl = document.getElementById("password");
     const passwordConfirmEl = document.getElementById("password-confirm");
+    // Select role-input only if it exists (e.g., on special admin panels)
     const roleEl = document.getElementById("role");
-    if (nameEl && emailEl && passwordEl && passwordConfirmEl && roleEl) {
+    if (nameEl && emailEl && passwordEl && passwordConfirmEl) {
         const body = {
             name: nameEl.value,
             email: emailEl.value,

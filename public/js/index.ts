@@ -74,9 +74,11 @@ if (signupForm) {
     const passwordConfirmEl = document.getElementById(
       "password-confirm",
     ) as HTMLInputElement | null;
+
+    // Select role-input only if it exists (e.g., on special admin panels)
     const roleEl = document.getElementById("role") as HTMLInputElement | null;
 
-    if (nameEl && emailEl && passwordEl && passwordConfirmEl && roleEl) {
+    if (nameEl && emailEl && passwordEl && passwordConfirmEl) {
       const body = {
         name: nameEl.value,
         email: emailEl.value,

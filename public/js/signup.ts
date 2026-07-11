@@ -44,7 +44,8 @@ export const signup = async (body: SignupBody): Promise<void> => {
       //   Initiate delay so user can read message
       window.setTimeout(async () => {
         // Log user in via email and password from body
-        await login(email, password);
+        // await login(email, password);
+        location.assign("/");
       }, 1500);
     }
   } catch (err: unknown) {

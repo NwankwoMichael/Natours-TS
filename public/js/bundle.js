@@ -756,18 +756,21 @@ if (signupForm) signupForm.addEventListener("submit", async (e)=>{
     const passwordConfirmEl = document.getElementById("password-confirm");
     // Select role-input only if it exists (e.g., on special admin panels)
     const roleEl = document.getElementById("role");
-    if (nameEl && emailEl && passwordEl && passwordConfirmEl) {
+    if (nameEl && emailEl && passwordEl && passwordConfirmEl) try {
         const body = {
             name: nameEl.value,
             email: emailEl.value,
             password: passwordEl.value,
             passwordConfirm: passwordConfirmEl.value,
-            role: roleEl?.value || "user"
+            role: roleEl ? roleEl.value : "user"
         };
         console.log("Communicating with registration API...");
         await (0, _signup.signup)(body);
         console.log("Account creation lifycycle complete!");
-    } else console.error("\u274C Critical Error: One or more registration DOM fields are missing!");
+    } catch (error) {
+        console.log("\uD83D\uDCA5 CRITICAL FRONTEND BREAKDOWN:", error);
+    }
+    else console.error("\u274C Critical Error: One or more registration DOM fields are missing!");
 });
 // USER LOGIN FORM SUBMISSION INTERCEPTOR
 if (loginForm) loginForm.addEventListener("submit", async (e)=>{
@@ -6657,7 +6660,6 @@ parcelHelpers.export(exports, "signup", ()=>signup);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alerts = require("./alerts");
-var _login = require("./login");
 const signup = async (body)=>{
     try {
         // Get body properties via destructuring
@@ -6684,7 +6686,8 @@ const signup = async (body)=>{
             //   Initiate delay so user can read message
             window.setTimeout(async ()=>{
                 // Log user in via email and password from body
-                await (0, _login.login)(email, password);
+                // await login(email, password);
+                location.assign("/");
             }, 1500);
         }
     } catch (err) {
@@ -6694,7 +6697,7 @@ const signup = async (body)=>{
     }
 };
 
-},{"axios":"3Ng71","./alerts":"5QDBO","./login":"dFhXt","@parcel/transformer-js/src/esmodule-helpers.js":"cw28t"}],"4cM7I":[function(require,module,exports,__globalThis) {
+},{"axios":"3Ng71","./alerts":"5QDBO","@parcel/transformer-js/src/esmodule-helpers.js":"cw28t"}],"4cM7I":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "forgotPassword", ()=>forgotPassword);

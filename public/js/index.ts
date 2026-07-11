@@ -79,19 +79,23 @@ if (signupForm) {
     const roleEl = document.getElementById("role") as HTMLInputElement | null;
 
     if (nameEl && emailEl && passwordEl && passwordConfirmEl) {
-      const body = {
-        name: nameEl.value,
-        email: emailEl.value,
-        password: passwordEl.value,
-        passwordConfirm: passwordConfirmEl.value,
-        role: roleEl?.value || "user",
-      };
+      try {
+        const body = {
+          name: nameEl.value,
+          email: emailEl.value,
+          password: passwordEl.value,
+          passwordConfirm: passwordConfirmEl.value,
+          role: roleEl ? roleEl.value : "user",
+        };
 
-      console.log("Communicating with registration API...");
+        console.log("Communicating with registration API...");
 
-      await signup(body);
+        await signup(body);
 
-      console.log("Account creation lifycycle complete!");
+        console.log("Account creation lifycycle complete!");
+      } catch (error) {
+        console.log("💥 CRITICAL FRONTEND BREAKDOWN:", error);
+      }
     } else {
       console.error(
         "❌ Critical Error: One or more registration DOM fields are missing!",

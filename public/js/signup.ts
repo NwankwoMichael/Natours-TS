@@ -42,21 +42,30 @@ export const signup = async (body: SignupBody): Promise<void> => {
       if (signupForm) signupForm.reset();
 
       //   Initiate delay so user can read message
-      window.setTimeout(async () => {
-        // Log user in via email and password from body
-        // await login(email, password);
+      window.setTimeout(() => {
+        // Redirect user to homepage
         location.assign("/");
       }, 1500);
     }
-  } catch (err: unknown) {
-    // Safe Axios checking
-    if (isAxiosError(err) && err.response?.data) {
-      showAlert("error", err.response.data.message);
-    } else {
-      showAlert(
-        "error",
-        "The server encountered an error during registration. Please try again later.",
-      );
-    }
+    // } catch (err: any) {
+    //   // Safe Axios checking
+    //   if (isAxiosError(err) && err.response?.data) {
+    //     showAlert("error", err.response.data.message);
+    //   } else {
+    //     showAlert(
+    //       "error",
+    //       "The server encountered an error during registration. Please try again later.",
+    //     );
+    //   }
+    // }
+  } catch (err: any) {
+    // Use axios object checking & direct object extraction fallback
+    const errorMessage =
+      err.response?.data?.message || err.message || "Registration failed.";
+
+    console.log("🕵️ SIGNUP FRONTEND ERROR LOGGED:", errorMessage);
+
+    // Display the true server error message natively to your user
+    showAlert("error", errorMessage);
   }
 };

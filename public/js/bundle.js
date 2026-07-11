@@ -6684,16 +6684,28 @@ const signup = async (body)=>{
             const signupForm = document.querySelector(".form--signup");
             if (signupForm) signupForm.reset();
             //   Initiate delay so user can read message
-            window.setTimeout(async ()=>{
-                // Log user in via email and password from body
-                // await login(email, password);
+            window.setTimeout(()=>{
+                // Redirect user to homepage
                 location.assign("/");
             }, 1500);
         }
+    // } catch (err: any) {
+    //   // Safe Axios checking
+    //   if (isAxiosError(err) && err.response?.data) {
+    //     showAlert("error", err.response.data.message);
+    //   } else {
+    //     showAlert(
+    //       "error",
+    //       "The server encountered an error during registration. Please try again later.",
+    //     );
+    //   }
+    // }
     } catch (err) {
-        // Safe Axios checking
-        if ((0, _axios.isAxiosError)(err) && err.response?.data) (0, _alerts.showAlert)("error", err.response.data.message);
-        else (0, _alerts.showAlert)("error", "The server encountered an error during registration. Please try again later.");
+        // Use axios object checking & direct object extraction fallback
+        const errorMessage = err.response?.data?.message || err.message || "Registration failed.";
+        console.log("\uD83D\uDD75\uFE0F SIGNUP FRONTEND ERROR LOGGED:", errorMessage);
+        // Display the true server error message natively to your user
+        (0, _alerts.showAlert)("error", errorMessage);
     }
 };
 

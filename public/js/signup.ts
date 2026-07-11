@@ -34,6 +34,13 @@ export const signup = async (body: SignupBody): Promise<void> => {
       // Display success message
       showAlert("success", "Welcome. Your signup was successful!");
 
+      // Locate signup form and clear input fields
+      const signupForm = document.querySelector(
+        ".form--signup",
+      ) as HTMLFormElement | null;
+
+      if (signupForm) signupForm.reset();
+
       //   Initiate delay so user can read message
       window.setTimeout(async () => {
         // Log user in via email and password from body
@@ -45,7 +52,10 @@ export const signup = async (body: SignupBody): Promise<void> => {
     if (isAxiosError(err) && err.response?.data) {
       showAlert("error", err.response.data.message);
     } else {
-      showAlert("error", "Network connection failed. Please try again later.");
+      showAlert(
+        "error",
+        "The server encountered an error during registration. Please try again later.",
+      );
     }
   }
 };

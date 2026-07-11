@@ -766,8 +766,6 @@ if (signupForm) signupForm.addEventListener("submit", async (e)=>{
         };
         console.log("Communicating with registration API...");
         await (0, _signup.signup)(body);
-        // Clear input fields
-        signupForm.reset();
         console.log("Account creation lifycycle complete!");
     } else console.error("\u274C Critical Error: One or more registration DOM fields are missing!");
 });
@@ -6680,6 +6678,9 @@ const signup = async (body)=>{
         if (res.data.status === "success") {
             // Display success message
             (0, _alerts.showAlert)("success", "Welcome. Your signup was successful!");
+            // Locate signup form and clear input fields
+            const signupForm = document.querySelector(".form--signup");
+            if (signupForm) signupForm.reset();
             //   Initiate delay so user can read message
             window.setTimeout(async ()=>{
                 // Log user in via email and password from body
@@ -6689,7 +6690,7 @@ const signup = async (body)=>{
     } catch (err) {
         // Safe Axios checking
         if ((0, _axios.isAxiosError)(err) && err.response?.data) (0, _alerts.showAlert)("error", err.response.data.message);
-        else (0, _alerts.showAlert)("error", "Network connection failed. Please try again later.");
+        else (0, _alerts.showAlert)("error", "The server encountered an error during registration. Please try again later.");
     }
 };
 

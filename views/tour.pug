@@ -97,17 +97,18 @@ block content
     .cta
       .cta__img.cta__img--logo
         img(src='/img/logo-white.png', alt='Natours logo')
-      img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
-      img.cta__img.cta__img--2(src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
+      if tour.images && tour.images[1]
+        img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
+      if tour.images && tour.images[2]
+        img.cta__img.cta__img--2(src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
       .cta__content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
 
-        //- 🚀 NESTING ARCHITECTURE: Every conditional gate is aligned exactly right!
         if user
           if isBooked
-            span.btn.btn--green.span-all-rows(style="background-image: linear-gradient(to right, #7dd56f, #28b485); cursor: default; box-shadow: none;")(href=`/me`) You already booked this tour! 🎉
+            a.btn.btn--green.span-all-rows(style="background-image: linear-gradient(to right, #7dd56f, #28b485); cursor: pointer; box-shadow: none;" href="/me") You already booked this tour! 🎉
           else
             button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}` data-stripe-public-key=`${stripePublicKey}`) Book tour now!
         else 
-          a.btn.btn--green.span-all-rows(href=`/login`) Log in to book tour
+          a.btn.btn--green.span-all-rows(href="/login") Log in to book tour

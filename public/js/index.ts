@@ -91,9 +91,6 @@ if (signupForm) {
 
       await signup(body);
 
-      // Clear input fields
-      signupForm.reset();
-
       console.log("Account creation lifycycle complete!");
     } else {
       console.error(

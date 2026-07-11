@@ -63,12 +63,23 @@ export const signup = catchAsync(
     // Generate your server application client-side landing dashboard URL
     const url = `${req.protocol}://${req.get("host")}/me`;
 
-    // The Email Dispatch loop (wrapped in try/catch block)
-    try {
-      await new Email(newUser, url).sendWelcome();
-    } catch (err) {
-      console.error("💥 ERROR SENDING SIGNUP EMAIL:", err);
-    }
+    // // The Email Dispatch loop (wrapped in try/catch block)
+    // try {
+    //   await new Email(newUser, url).sendWelcome();
+    // } catch (err) {
+    //   console.error("💥 ERROR SENDING SIGNUP EMAIL:", err);
+    // }
+
+    new Email(newUser, url)
+      .sendWelcome()
+      .then(() => {
+        console.log(
+          `✨ Background email sent successfully to ${newUser.email}`,
+        );
+      })
+      .catch((err) => {
+        console.error("💥 Background email dispatch failed silently:", err);
+      });
 
     // Finalize session token creation and fire response
     createSendToken(newUser, 201, res);

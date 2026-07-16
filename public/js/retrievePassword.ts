@@ -27,7 +27,7 @@ export const forgotPassword = async (email: string): Promise<void> => {
     if (isAxiosError(err) && err.response?.data) {
       showAlert(
         "error",
-        err.response.data.message || "Failed to dispatch reset ling.",
+        err.response.data.message || "Failed to dispatch reset link.",
       );
     } else {
       showAlert("error", "Network connection failed. Please try again.");
